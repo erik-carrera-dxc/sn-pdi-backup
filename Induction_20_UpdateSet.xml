@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2024-10-28 10:56:56">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description/>
+<inserted/>
+<name>[2024/10/23] ECT Induction task 20 #01</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>e4c3b96b9751d210be33793de053af29</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-10-28 10:56:55</sys_created_on>
+<sys_id>e279bb4997e11210be33793de053afb5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-10-28 10:56:55</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_security_acl_37e835239791d210be33793de053af14</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl"><sys_security_acl action="INSERT_OR_UPDATE"><active>true</active><admin_overrides>true</admin_overrides><advanced>false</advanced><applies_to/><condition/><decision_type>allow</decision_type><description/><local_or_existing>Local</local_or_existing><name>CIsNotification</name><operation display_value="execute">execute</operation><script/><security_attribute/><sys_class_name>sys_security_acl</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-10-23 09:44:25</sys_created_on><sys_id>37e835239791d210be33793de053af14</sys_id><sys_mod_count>0</sys_mod_count><sys_name>CIsNotification</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_security_acl_37e835239791d210be33793de053af14</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-10-23 09:44:25</sys_updated_on><type display_value="client_callable_script_include">client_callable_script_include</type></sys_security_acl></record_update>]]></payload>
+<payload_hash>-1525674594</payload_hash>
+<remote_update_set display_value="[2024/10/23] ECT Induction task 20 #01">e279bb4997e11210be33793de053afb5</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-10-28 10:56:55</sys_created_on>
+<sys_id>2e79bb4997e11210be33793de053afb5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>192b8c3633e0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-10-28 10:56:55</sys_updated_on>
+<table>CIsNotification</table>
+<target_name>CIsNotification</target_name>
+<type>Access Control</type>
+<update_domain>global</update_domain>
+<update_guid>ffe83523af91d210c0a39738b765ad17</update_guid>
+<update_guid_history>ffe83523af91d210c0a39738b765ad17:-1525674594</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_include_f6c8b1239791d210be33793de053af9a</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.CIsNotification&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description/&gt;&lt;mobile_callable&gt;false&lt;/mobile_callable&gt;&lt;name&gt;CIsNotification&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var CIsNotification = Class.create();
+CIsNotification.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    getCIs: function() {
+		//Get the record via the sis_id received by the caller client script
+        var ciSysID = this.getParameter("sysparam_ci")
+        var selectedCI = new GlideRecord("cmdb_ci");
+        selectedCI.addQuery("sys_id", ciSysID);
+        selectedCI.query();
+
+		//Get the amount of records that have the same class as the one received by the caller client script
+        while (selectedCI.next()) {
+            var relatedCIs = new GlideRecord("cmdb_ci");
+            relatedCIs.addQuery("sys_class_name", selectedCI.sys_class_name);
+            relatedCIs.query();
+
+            return relatedCIs.getRowCount();
+        }
+    },
+
+    type: 'CIsNotification'
+});]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-10-23 09:44:25&lt;/sys_created_on&gt;&lt;sys_id&gt;f6c8b1239791d210be33793de053af9a&lt;/sys_id&gt;&lt;sys_mod_count&gt;13&lt;/sys_mod_count&gt;&lt;sys_name&gt;CIsNotification&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_f6c8b1239791d210be33793de053af9a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-10-23 11:14:50&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;f6c8b1239791d210be33793de053af9a&lt;/id&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-10-23 09:44:24&lt;/sys_created_on&gt;&lt;sys_id&gt;2be839af9751d210be33793de053affb&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-10-23 09:44:24&lt;/sys_updated_on&gt;&lt;table&gt;sys_script_include&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+<payload_hash>-50306626</payload_hash>
+<remote_update_set display_value="[2024/10/23] ECT Induction task 20 #01">e279bb4997e11210be33793de053afb5</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-10-28 10:56:55</sys_created_on>
+<sys_id>6a79bb4997e11210be33793de053afb5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>192b91629080000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-10-28 10:56:55</sys_updated_on>
+<table/>
+<target_name>CIsNotification</target_name>
+<type>Script Include</type>
+<update_domain>global</update_domain>
+<update_guid>4cad4aebc0d1d2106cd46276ac393d98</update_guid>
+<update_guid_history>4cad4aebc0d1d2106cd46276ac393d98:-50306626,7c1d8aebbed1d210e2ab0fd22688f259:391255325,7fdcceabdcd1d2107d38c6595ebf5cb9:-1117106130,129cceabd0d1d21067da1501a8484377:-72924146,054b8e2b26d1d21033dfd6795371afaf:619869940,0cfaca2b3cd1d210890832545a49749b:1993066407,f09a0ae76fd1d2105164bbe90078d469:-824792605,ad1ace6754d1d210771ba115aae2b5e3:1250984387,56b8cae315d1d2102277665aa4f47de6:-1435623243,53378ae3f8d1d21048ea829ed3e26091:-1740230888,37fff56b3c91d210ed3bb48dab920eca:352148866,66cc7d27a991d210a1e2d4f8f72b7780:69634912,2af8b523a991d210cb6021f4b407d7f1:702098057,80f875237591d2109192c34ece73bc87:1757629496</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_client_ab75352b9751d210be33793de053af22</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description/&gt;&lt;field&gt;cmdb_ci&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;[DXC] Notify CIs amount&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '') {
+        return;
+    }
+
+	//Create the GlideAjax object
+    var ga = new GlideAjax("CIsNotification");
+    ga.addParam("sysparm_name", "getCIs"); // Function Name
+    ga.addParam("sysparam_ci", newValue); //New value from Configuration Item field
+    ga.getXMLAnswer(executeAlert); //Execute the request and process the data in the callback function
+
+    function executeAlert(response) {
+        alert("Total " + response + " CIs of the same class exist in the system.");
+    }
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-10-23 09:32:08&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;ab75352b9751d210be33793de053af22&lt;/sys_id&gt;&lt;sys_mod_count&gt;12&lt;/sys_mod_count&gt;&lt;sys_name&gt;[DXC] Notify CIs amount&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_ab75352b9751d210be33793de053af22&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-10-23 11:17:28&lt;/sys_updated_on&gt;&lt;table&gt;task&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;0&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+<payload_hash>1531289811</payload_hash>
+<remote_update_set display_value="[2024/10/23] ECT Induction task 20 #01">e279bb4997e11210be33793de053afb5</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-10-28 10:56:55</sys_created_on>
+<sys_id>a679bb4997e11210be33793de053afb5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>192b91894500000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-10-28 10:56:55</sys_updated_on>
+<table>task</table>
+<target_name>[DXC] Notify CIs amount</target_name>
+<type>Client Script</type>
+<update_domain>global</update_domain>
+<update_guid>723e466f29d1d210e4217b0574e5745d</update_guid>
+<update_guid_history>723e466f29d1d210e4217b0574e5745d:1531289811,1d1e426fc8d1d2100733d150d330bcaa:94294225,0bc8ca6781d1d21001b007f5684df73c:-61927684,ebc782eb1f91d210e71869466498ea93:933888363,fa9742eba191d21013098f2f32d6b74e:-162827637,ac7086ab2d91d210ec54c80c82e15cf6:116640746,d65086ab1c91d21008779d050c21ed83:-445320018,0d2f3d2b7291d2104a23c3799ae678b3:-1971534071,fc0f39e75791d210327d986ff02b68d5:1827886764,c8fcfd67fa91d210fc6eb11a672c95d7:-1819584183,e3a8fdaf3e51d210bfd3b0791a30ed4f:1554079921,949739af1451d210088b8157a84b87f5:-1832080515,f316fdebe651d210efba54d9e012a787:-1730828062</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_security_acl_role_77e835239791d210be33793de053af19</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role"><sys_security_acl_role action="INSERT_OR_UPDATE"><sys_class_name>sys_security_acl_role</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-10-23 09:44:26</sys_created_on><sys_id>77e835239791d210be33793de053af19</sys_id><sys_mod_count>0</sys_mod_count><sys_name>CIsNotification.itil</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_security_acl display_value="CIsNotification">37e835239791d210be33793de053af14</sys_security_acl><sys_update_name>sys_security_acl_role_77e835239791d210be33793de053af19</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-10-23 09:44:26</sys_updated_on><sys_user_role display_value="itil" name="itil">282bf1fac6112285017366cb5f867469</sys_user_role></sys_security_acl_role></record_update>]]></payload>
+<payload_hash>1143389380</payload_hash>
+<remote_update_set display_value="[2024/10/23] ECT Induction task 20 #01">e279bb4997e11210be33793de053afb5</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-10-28 10:56:55</sys_created_on>
+<sys_id>ee79bb4997e11210be33793de053afb5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>192b8c3650d0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-10-28 10:56:55</sys_updated_on>
+<table>CIsNotification</table>
+<target_name>CIsNotification.itil</target_name>
+<type>Access Roles</type>
+<update_domain>global</update_domain>
+<update_guid>f7e835238891d2101dabe905c518081c</update_guid>
+<update_guid_history>f7e835238891d2101dabe905c518081c:1143389380</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>
